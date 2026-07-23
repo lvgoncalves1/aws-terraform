@@ -28,7 +28,14 @@ resource "aws_instance" "app_server" {
   ami           = "ami-02167eae61967e403"
   instance_type = "t3.micro"
   key_name = "LUCAS-OREGON"
+  # user_data = <<-EOF
+  #                #!/bin/bash
+  #                cd /home/ubuntu
+  #                echo "chegou aqui"
+  #                echo "<h1>Teste terraform</h1>" > index.html
+  #                nohup busybox httpd -f -h /home/ubuntu -p 8000 &
+  #                EOF
   tags = {
-    Name = "learn-terraform"
+    Name = "teste aws"
   }
 }
