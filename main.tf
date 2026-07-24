@@ -36,6 +36,6 @@ resource "aws_instance" "app_server" {
   #                nohup busybox httpd -f -h /home/ubuntu -p 8000 &
   #                EOF
   tags = {
-    Name = "teste aws"
+    Name = "terraform ansible pyton"
   }
 }
