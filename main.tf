@@ -39,3 +39,9 @@ resource "aws_instance" "app_server" {
     Name = "terraform ansible pyton"
   }
 }
+
+
+resource "aws_key_pair" "chaveSSH"{
+  key_name = DEV
+  public_key = file("project-dev.pub")
+}
