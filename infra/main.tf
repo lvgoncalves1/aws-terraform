@@ -10,7 +10,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-west-2"
+  region = var.regiao_aws
 }
 
 data "aws_ami" "ubuntu" {
@@ -26,15 +26,8 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_instance" "app_server" {
   ami           = "ami-02167eae61967e403"
-  instance_type = "t3.micro"
-  key_name = "LUCAS-OREGON"
-  # user_data = <<-EOF
-  #                #!/bin/bash
-  #                cd /home/ubuntu
-  #                echo "chegou aqui"
-  #                echo "<h1>Teste terraform</h1>" > index.html
-  #                nohup busybox httpd -f -h /home/ubuntu -p 8000 &
-  #                EOF
+  instance_type = var.instancia
+  key_name      = aws_key_pair.chaveSSH.key_name
   tags = {
     Name = "terraform ansible pyton"
   }
@@ -42,6 +35,10 @@ resource "aws_instance" "app_server" {
 
 
 resource "aws_key_pair" "chaveSSH"{
-  key_name = DEV
-  public_key = file("project-dev.pub")
+  key_name = var.chave
+  public_key = file("${var.chave}.pub")
+}
+
+output "IP_publico" {
+  value = aws_instance.app_server.public_ip
 }
