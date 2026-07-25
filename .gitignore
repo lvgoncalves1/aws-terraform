@@ -9,3 +9,6 @@
 *.tfstate.*
 
 *.pub
+
+project-dev
+project-prod

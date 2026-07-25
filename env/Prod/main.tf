@@ -3,6 +3,7 @@ module "aws_prod" {
   instancia = "t3.micro"
   regiao_aws = "us-west-2"
   chave = "project-prod"
+  ambiente = "prod"
 }
 
 output "IP" {
