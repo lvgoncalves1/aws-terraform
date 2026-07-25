@@ -9,3 +9,4 @@ module "aws_prod" {
 output "IP" {
   value = module.aws_prod.IP_publico
 }
+

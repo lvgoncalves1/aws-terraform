@@ -18,14 +18,14 @@ data "aws_ami" "ubuntu" {
 
   filter {
     name = "name"
-    values = ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
   }
 
-  owners = ["099720109477"] # Canonical
+  owners = ["099720109477"]
 }
 
 resource "aws_instance" "app_server" {
-  ami           = "ami-02167eae61967e403"
+  ami           = data.aws_ami.ubuntu.id
   instance_type = var.instancia
   key_name      = aws_key_pair.chaveSSH.key_name
   tags = {
