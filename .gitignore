@@ -10,5 +10,6 @@
 
 *.pub
 
-project-dev
-project-prod
+# Chaves Privadas SSH do projeto
+env/Dev/project-dev
+env/Prod/project-prod
