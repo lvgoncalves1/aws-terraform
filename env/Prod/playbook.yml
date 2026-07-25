@@ -12,11 +12,12 @@
       repo: https://github.com/guilhermeonrails/clientes-leo-api.git
       dest: /home/ubuntu/tcc
       version: master
+      force: yes
   - name: Instalando dependencias com pip, django e django rest
     pip:
       virtualenv: /home/ubuntu/tcc/venv
       requirements: /home/ubuntu/tcc/requirements.txt
-      
+
   - name: Alterando host do settings
     lineinfile:
       path: /home/ubuntu/tcc/setup/settings.py
