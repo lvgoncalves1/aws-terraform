@@ -4,6 +4,10 @@ module "aws_dev" {
   regiao_aws = "us-west-2"
   chave = "project-dev"
   ambiente = "dev"
+  grupoDeSeguranca = "DEV"
+  minimo = 0
+  maximo = 10
+  nomeGrupo = "Dev"
 }
 
 output "IP" {
