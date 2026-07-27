@@ -31,7 +31,7 @@ resource "aws_launch_template" "maquina" {
   tags = {
     Name = "terraform ansible pyton"
   }
-  security_group_names = [ var.grupoDeSeguranca ]
+  vpc_security_group_ids = [aws_security_group.acesso_geral.id]
   user_data = filebase64("ansible.sh")
 }
 
@@ -48,7 +48,7 @@ resource "aws_autoscaling_group" "grupo" {
   min_size = var.minimo
   launch_template {
     id = aws_launch_template.maquina.id
-    version = "$Latest"
+    version = aws_launch_template.maquina.latest_version
   }
   target_group_arns = [ aws_lb_target_group.alvoLoadBalancer.arn ]
 }
@@ -84,5 +84,17 @@ resource "aws_lb_listener" "entradaLoadBalancer" {
   default_action {
     type = "forward"
     target_group_arn = aws_lb_target_group.alvoLoadBalancer.arn
+  }
+}
+
+resource "aws_autoscaling_policy" "escala-producao" {
+  name = "terraform-escala"
+  autoscaling_group_name = var.nomeGrupo
+  policy_type = "TargetTrackingScaling"
+  target_tracking_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ASGAverageCPUUtilization"
+    }
+    target_value = 50.0
   }
 }
