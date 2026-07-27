@@ -7,6 +7,7 @@ module "aws_dev" {
   grupoDeSeguranca = "DEV"
   minimo = 0
   maximo = 10
-  nomeGrupo = "Dev"
+  nomeGrupo = "DEV"
+  producao = false
 }
 

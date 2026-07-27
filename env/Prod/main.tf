@@ -8,6 +8,7 @@ module "aws_prod" {
   minimo = 1
   maximo = 10
   nomeGrupo = "Prod"
+  producao = true
 }
 
 
